@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
-db.connect();
+// db.connect();
 
 //middleware
 app.use(express.urlencoded({ extended: true }));
