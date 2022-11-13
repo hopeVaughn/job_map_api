@@ -19,8 +19,16 @@ app.use(morgan("dev"));
 
 
 
+// Separated Routes for each use
+
+const home = require("./routes/home")
 
 
+
+
+// Mount all Resource routes
+
+// app.use('/home', home(db));
 
 
 
