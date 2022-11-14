@@ -30,8 +30,8 @@ module.exports = (db) => {
       // res.json(resume.rows.length)
       // res.json(hrInterview.rows.length)
       // res.json(techInterview.rows.length)
-      res.json(jobOffer.rows.length)
-      return resume.rows.length, hrInterview.rows.length, techInterview.rows.length, jobOffer.rows.length
+      res.json([resume.rows.length, hrInterview.rows.length, techInterview.rows.length, jobOffer.rows.length])
+      return [resume.rows.length, hrInterview.rows.length, techInterview.rows.length, jobOffer.rows.length];
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Server error")

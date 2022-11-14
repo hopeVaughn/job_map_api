@@ -21,14 +21,14 @@ app.use(morgan("dev"));
 
 // Separated Routes for each use
 
-const home = require("./routes/home")
+const userLanding = require("./routes/userLanding")
 const companies = require("./routes/companies")
 
 
 
 // Mount all Resource routes
 
-app.use('/api/', home(db));
+app.use('/api/', userLanding(db));
 app.use('/api/companies', companies(db));
 
 
