@@ -19,5 +19,5 @@ CREATE TABLE companies(
   tech_interview_date DATE,
   job_offer BOOLEAN DEFAULT FALSE,
   job_offer_date DATE,
-  network_id INT,
+  network_id INT
   );
