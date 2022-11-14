@@ -22,13 +22,14 @@ app.use(morgan("dev"));
 // Separated Routes for each use
 
 const home = require("./routes/home")
-
+const companies = require("./routes/companies")
 
 
 
 // Mount all Resource routes
 
 app.use('/', home(db));
+app.use('/companies', companies(db));
 
 
 
