@@ -28,8 +28,8 @@ const companies = require("./routes/companies")
 
 // Mount all Resource routes
 
-app.use('/', home(db));
-app.use('/companies', companies(db));
+app.use('/api/', home(db));
+app.use('/api/companies', companies(db));
 
 
 
