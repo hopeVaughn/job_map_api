@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS users CASCADE;
+CREATE TABLE companies(
+  id SERIAL PRIMARY KEY NOT NULL,
+  title VARCHAR(250) NOT NULL,
+  category VARCHAR(250) NOT NULL,
+  stage INT NOT NULL DEFAULT 0,
+  resume_sent_date DATE,
+  resume_sent BOOLEAN DEFAULT FALSE,
+  hr_interview BOOLEAN DEFAULT FALSE,
+  tech_interview BOOLEAN DEFAULT FALSE,
+  job_offer BOOLEAN DEFAULT FALSE,
+)
