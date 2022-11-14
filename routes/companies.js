@@ -3,7 +3,7 @@ const router = express.Router();
 
 
 module.exports = (db) => {
-  router.get('/companies', async (req, res) => {
+  router.get('/', async (req, res) => {
     const getCompanies = `SELECT * FROM companies;`
     try {
       const companies = await db.query(getCompanies);
