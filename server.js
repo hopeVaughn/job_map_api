@@ -28,7 +28,7 @@ const home = require("./routes/home")
 
 // Mount all Resource routes
 
-// app.use('/home', home(db));
+app.use('/', home(db));
 
 
 

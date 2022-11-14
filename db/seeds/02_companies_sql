@@ -1,0 +1,6 @@
+-- date format is yyyy-mm-dd
+INSERT INTO companies(title, category, stage, resume_sent_date,resume_sent, hr_interview, tech_interview, job_offer) VALUES ('Amazon', 'IT/TECH', '0', '2022-12-25', FALSE, FALSE, FALSE, FALSE);
+INSERT INTO companies(title, category, stage, resume_sent_date,resume_sent, hr_interview, tech_interview, job_offer) VALUES ('Google', 'IT/TECH', '1', '2022-12-31', TRUE, FALSE, FALSE, FALSE);
+INSERT INTO companies(title, category, stage, resume_sent_date,resume_sent, hr_interview, tech_interview, job_offer) VALUES ('Tesla', 'IT/TECH', '2', '2022-12-28', TRUE, TRUE, FALSE, FALSE);
+INSERT INTO companies(title, category, stage, resume_sent_date,resume_sent, hr_interview, tech_interview, job_offer) VALUES ('Twitter', 'IT/TECH', '3', '2022-12-19', TRUE, TRUE, TRUE, FALSE);
+INSERT INTO companies(title, category, stage, resume_sent_date,resume_sent, hr_interview, tech_interview, job_offer) VALUES ('LHL', 'IT/TECH', '4', '2022-12-05', TRUE, TRUE, TRUE, TRUE);
