@@ -24,7 +24,17 @@ module.exports = (db) => {
 
   //create contact
   router.post('/', async (req, res) => {
-    //does something
+    try {
+      const values = [req.body.name, req.body.image, req.body.linkedin, req.body.twitter, req.body.github]
+      const createContact = `INSERT INTO contacts(name,network_img,linkedin,twitter,github) VALUES($1, $2, $3, $4, $5) RETURNING *;`
+      const newContact = await db.query(createContact, values);
+      console.log(values);
+      res.json(newContact.rows);
+      return newContact.rows;
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send('Server Error')
+    }
   })
 
   //edit single contact
