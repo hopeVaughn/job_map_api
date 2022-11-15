@@ -35,7 +35,7 @@ module.exports = (db) => {
   //create contact
   router.post('/', async (req, res) => {
     try {
-      const values = [req.body.name, req.body.image, req.body.linkedin, req.body.twitter, req.body.github]
+      const values = [req.body.name, req.body.image, req.body.linkedin, req.body.twitter, req.body.github];
       const createContact = `INSERT INTO contacts(name,network_img,linkedin,twitter,github) VALUES($1, $2, $3, $4, $5) RETURNING *;`
       const newContact = await db.query(createContact, values);
       console.log(values);
@@ -49,7 +49,41 @@ module.exports = (db) => {
 
   //edit single contact
   router.put('/:id', async (req, res) => {
-    //does something
+    try {
+      const { id } = req.params;
+      const values = [];
+      let editContact = `
+      UPDATE contacts
+      SET `
+      if (req.body.name) {
+        values.push(req.body.name);
+        editContact += `name = $${values.length},`
+      }
+      if (req.body.image) {
+        values.push(req.body.image);
+        editContact += `network_img = $${values.length},`
+      }
+      if (req.body.linkedin) {
+        values.push(req.body.linkedin);
+        editContact += `linkedin = $${values.length},`
+      }
+      if (req.body.twitter) {
+        values.push(req.body.twitter);
+        editContact += `twitter = $${values.length},`
+      }
+      if (req.body.github) {
+        values.push(req.body.github);
+        editContact += `github = $${values.length},`
+      }
+      editContact = editContact.slice(0, -1);
+      editContact += `WHERE contacts.id = ${id};`
+      const updateContact = await db.query(editContact, values);
+      res.json("Contact was updated");
+      return updateContact.rows
+    } catch (error) {
+      console.error(error.message);
+      res.status(404).send("Could not find contact")
+    }
   })
 
   // delete single contact

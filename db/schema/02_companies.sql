@@ -9,15 +9,6 @@ CREATE TABLE companies(
   human_resources_img VARCHAR(250),
   recruiter VARCHAR(250),
   recruiter_img VARCHAR(250),
-  stack VARCHAR(250),
-  stage INT NOT NULL DEFAULT 0,
-  resume_sent BOOLEAN DEFAULT FALSE,
-  resume_sent_date DATE,
-  hr_interview BOOLEAN DEFAULT FALSE,
-  hr_interview_date DATE,
-  tech_interview BOOLEAN DEFAULT FALSE,
-  tech_interview_date DATE,
-  job_offer BOOLEAN DEFAULT FALSE,
-  job_offer_date DATE,
   network_id INT
   );
+-- application table for ...resume.info

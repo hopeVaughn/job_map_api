@@ -6,4 +6,4 @@ CREATE TABLE contacts(
   linkedin VARCHAR(250),
   twitter VARCHAR(250),
   github VARCHAR(250)
-)
+);
