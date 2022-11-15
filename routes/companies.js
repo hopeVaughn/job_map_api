@@ -14,5 +14,14 @@ module.exports = (db) => {
       res.status(500).send("Server error")
     }
   })
+  router.post('/', async (req, res) => {
+    //does something
+  })
+  router.put('/:id', async (req, res) => {
+    //does something
+  })
+  router.delete('/:id', async (req, res) => {
+    //does something
+  })
   return router;
 }
