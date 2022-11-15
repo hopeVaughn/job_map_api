@@ -10,6 +10,9 @@ module.exports = (db) => {
     const contactsQuery = `SELECT * FROM contacts;`
     try {
       const contacts = await db.query(contactsQuery);
+      if (contacts.rows.length === 0) {
+        return res.status(404).send('No Contacts Availible')
+      }
       res.json(contacts.rows)
       return contacts.rows;
     } catch (error) {
@@ -24,6 +27,9 @@ module.exports = (db) => {
       const { id } = req.params;
       const singleContact = `SELECT * FROM contacts WHERE contacts.id = $1;`
       const getSingleContact = await db.query(singleContact, [id]);
+      if (getSingleContact.rows.length === 0) {
+        return res.status(404).send('Contact Unavailable')
+      }
       res.json(getSingleContact.rows);
       return getSingleContact.rows;
     } catch (error) {
@@ -88,7 +94,15 @@ module.exports = (db) => {
 
   // delete single contact
   router.delete('/:id', async (req, res) => {
-    //does something
+    try {
+      const { id } = req.params;
+      const removeContact = `DELETE FROM contacts WHERE contacts.id = $1;`;
+      const deleteContact = db.query(removeContact, [id]);
+      res.json("Contact was deleted");
+    } catch (error) {
+      console.log(error.message);
+      res.status(404).send('Contact not found');
+    }
   })
 
   return router;

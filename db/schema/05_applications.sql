@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS applications CASCADE;
 CREATE TABLE applications(
   id SERIAL PRIMARY KEY NOT NULL,
+  rejected BOOLEAN DEFAULT FALSE,
   resume_sent BOOLEAN DEFAULT FALSE,
   resume_sent_date DATE,
   hr_interview BOOLEAN DEFAULT FALSE,
