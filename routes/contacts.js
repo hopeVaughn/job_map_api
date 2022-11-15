@@ -1,4 +1,5 @@
 const express = require('express');
+const dbParams = require('../lib/db');
 const router = express.Router();
 
 
@@ -18,8 +19,17 @@ module.exports = (db) => {
   })
 
   // get single contact
-  router.get('/:id', (req, res) => {
-    //does something
+  router.get('/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const singleContact = `SELECT * FROM contacts WHERE contacts.id = $1;`
+      const getSingleContact = await db.query(singleContact, [id]);
+      res.json(getSingleContact.rows);
+      return getSingleContact.rows;
+    } catch (error) {
+      console.error(error.message);
+      res.status(404).send("Could not find contact")
+    }
   })
 
   //create contact
