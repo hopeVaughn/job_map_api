@@ -18,10 +18,10 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get('/', async (req, res) => {
-    const resumeSentQuery = `SELECT * FROM companies WHERE resume_sent = TRUE;`
-    const hrInterviewQuery = `SELECT * FROM companies WHERE hr_interview = TRUE;`
-    const techInterviewQuery = `SELECT * FROM companies WHERE tech_interview = TRUE;`
-    const offerQuery = `SELECT * FROM companies WHERE job_offer = TRUE;`
+    const resumeSentQuery = `SELECT * FROM applications WHERE resume_sent = TRUE;`
+    const hrInterviewQuery = `SELECT * FROM applications WHERE hr_interview = TRUE;`
+    const techInterviewQuery = `SELECT * FROM applications WHERE tech_interview = TRUE;`
+    const offerQuery = `SELECT * FROM applications WHERE job_offer = TRUE;`
     try {
       const resume = await db.query(resumeSentQuery);
       const hrInterview = await db.query(hrInterviewQuery);
