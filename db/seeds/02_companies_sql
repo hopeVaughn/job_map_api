@@ -1,6 +1,6 @@
 -- date format is yyyy-mm-dd
-INSERT INTO companies(title, category) VALUES ('Amazon', 'IT/TECH');
-INSERT INTO companies(title, category) VALUES ('Google', 'IT/TECH');
-INSERT INTO companies(title, category) VALUES ('Tesla', 'IT/TECH');
-INSERT INTO companies(title, category) VALUES ('Twitter', 'IT/TECH');
-INSERT INTO companies(title, category) VALUES ('LHL', 'IT/TECH');
+INSERT INTO companies(title, category, user_id) VALUES ('Amazon', 'IT/TECH','5c2ea821-8462-4c2b-8bb7-eb1b30739837');
+INSERT INTO companies(title, category, user_id) VALUES ('Google', 'IT/TECH','5c2ea821-8462-4c2b-8bb7-eb1b30739837');
+INSERT INTO companies(title, category, user_id) VALUES ('Tesla', 'IT/TECH','5c2ea821-8462-4c2b-8bb7-eb1b30739837');
+INSERT INTO companies(title, category, user_id) VALUES ('Twitter', 'IT/TECH','5c2ea821-8462-4c2b-8bb7-eb1b30739837');
+INSERT INTO companies(title, category, user_id) VALUES ('LHL', 'IT/TECH','5c2ea821-8462-4c2b-8bb7-eb1b30739837');

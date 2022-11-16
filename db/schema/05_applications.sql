@@ -12,7 +12,7 @@ CREATE TABLE applications(
   job_offer_date DATE,
   stage INT NOT NULL DEFAULT 0,
   stack VARCHAR(250),
-  company_id INT NOT NULL,
-  user_id UUID NOT NULL
+  company_id INT NOT NULL
 );
 -- date fns to search current date vs upcoming dates
+
