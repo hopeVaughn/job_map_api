@@ -34,15 +34,61 @@ module.exports = (db) => {
     }
 
   })
-
   //create company
   router.post('/', async (req, res) => {
-    //does something
+    const values = [req.body.title, req.body.category, req.body.human_resources, req.body.human_resources_img, req.body.recruiter, req.body.recruiter_img];
+    const createCompany = `INSERT INTO companies(title,category,human_resources,human_resources_img,recruiter,recruiter_img) VALUES($1, $2, $3, $4, $5, $6) RETURNING *;`;
+    try {
+      const newCompany = await db.query(createCompany, values);
+      res.json(newCompany.rows);
+      return newCompany.rows;
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send('Server Error')
+    }
   })
 
   //edit company
   router.put('/:id', async (req, res) => {
-    //does something
+    const { id } = req.params;
+    const values = [];
+    let editCompany = `
+    UPDATE companies
+    SET `
+    if (req.body.title) {
+      values.push(req.body.title);
+      editCompany += `title = $${values.length},`
+    }
+    if (req.body.category) {
+      values.push(req.body.category);
+      editCompany += `category= $${values.length},`
+    }
+    if (req.body.human_resources) {
+      values.push(req.body.human_resources);
+      editCompany += `human_resources = $${values.length},`
+    }
+    if (req.body.human_resources_img) {
+      values.push(req.body.human_resources_img);
+      editCompany += `human_resources_img = $${values.length},`
+    }
+    if (req.body.recruiter) {
+      values.push(req.body.recruiter);
+      editCompany += `recruiter = $${values.length},`
+    }
+    if (req.body.recruiter_img) {
+      values.push(req.body.recruiter_img);
+      editCompany += `recruiter_img = $${values.length},`
+    }
+    editCompany = editCompany.slice(0, -1);
+    editCompany += `WHERE contacts.id = ${id};`
+    try {
+      const updateCompany = await db.query(editCompany, values);
+      res.json("Company was updated");
+      return updateCompany.rows;
+    } catch (error) {
+      console.error(error.message);
+      res.status(404).send('Could not find Company')
+    }
   })
 
   //delete company
