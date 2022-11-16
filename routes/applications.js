@@ -27,6 +27,7 @@ module.exports = (db) => {
   })
 
   //get all applications
+
   router.get('/all', async (req, res) => {
     const allApplications = `SELECT * FROM applications;`;
     try {
@@ -39,32 +40,19 @@ module.exports = (db) => {
     }
   })
 
-  //get application by id
-  router.get('/:id', async (req, res) => {
-    const { id } = req.params;
-    const singleApplication = `SELECT * FROM applications WHERE applications.id = $1;`;
-    try {
-      const getSingleApplication = await db.query(singleApplication, [id]);
-      res.json(getSingleApplication.rows);
-      return getSingleApplication.rows;
-    } catch (error) {
-      console.error(error.message);
-      res.status(404).send('Application not found');
-    }
-  })
 
-  // get all companies resume's sent
+  // get all sent resume's
   router.get('/resumes', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allCompanies = `SELECT companies.title FROM companies
+    const allResumes = `SELECT companies.title FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
     applications.resume_sent = TRUE;`;
     try {
-      const getCompanies = await db.query(allCompanies, values);
-      res.json(getCompanies.rows);
-      return getCompanies.rows;
+      const getAllResumes = await db.query(allResumes, values);
+      res.json(getAllResumes.rows);
+      return getAllResumes.rows;
     } catch (error) {
       console.error(error.message);
       res.status(404).send('could not load company')
@@ -139,6 +127,20 @@ module.exports = (db) => {
     }
   })
 
+  // //get application by id
+  router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+    const singleApplication = `SELECT * FROM applications WHERE applications.id = $1;`;
+    try {
+      const getSingleApplication = await db.query(singleApplication, [id]);
+      res.json(getSingleApplication.rows);
+      return getSingleApplication.rows;
+    } catch (error) {
+      console.error(error.message);
+      res.status(404).send('Bobba Fett');
+    }
+  })
+
   //edit application
   router.put('/:id', async (req, res) => {
     const { id } = req.params;
@@ -195,6 +197,19 @@ module.exports = (db) => {
     } catch (error) {
       console.error(error.message);
       res.status(404).send('Could not find Company')
+    }
+  })
+
+  //delete application
+  router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    const removeApplication = ` DELETE FROM applications WHERE applications.id = $1;`;
+    try {
+      const deleteApplication = db.query(removeApplication, [id]);
+      res.json("Application was deleted");
+    } catch (error) {
+      console.error(error.message);
+      res.status(404).send('Company not found')
     }
   })
   return router;
