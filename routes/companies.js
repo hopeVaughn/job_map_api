@@ -80,7 +80,7 @@ module.exports = (db) => {
       editCompany += `recruiter_img = $${values.length},`
     }
     editCompany = editCompany.slice(0, -1);
-    editCompany += `WHERE contacts.id = ${id};`
+    editCompany += `WHERE companies.id = ${id};`
     try {
       const updateCompany = await db.query(editCompany, values);
       res.json("Company was updated");
@@ -93,7 +93,15 @@ module.exports = (db) => {
 
   //delete company
   router.delete('/:id', async (req, res) => {
-    //does something
+    const { id } = req.params;
+    const removeCompany = ` DELETE FROM companies WHERE companies.id = $1;`;
+    try {
+      const deleteCompany = db.query(removeCompany, [id]);
+      res.json("Company was deleted");
+    } catch (error) {
+      console.error(error.message);
+      res.status(404).send('Company not found')
+    }
   })
   return router;
 }

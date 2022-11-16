@@ -92,9 +92,9 @@ module.exports = (db) => {
 
   // delete single contact
   router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    const removeContact = `DELETE FROM contacts WHERE contacts.id = $1;`;
     try {
-      const { id } = req.params;
-      const removeContact = `DELETE FROM contacts WHERE contacts.id = $1;`;
       const deleteContact = db.query(removeContact, [id]);
       res.json("Contact was deleted");
     } catch (error) {
