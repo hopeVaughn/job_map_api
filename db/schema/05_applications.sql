@@ -13,6 +13,6 @@ CREATE TABLE applications(
   stage INT NOT NULL DEFAULT 0,
   stack VARCHAR(250),
   company_id INT NOT NULL,
-  user_id INT NOT NULL
+  user_id UUID NOT NULL
 );
 -- date fns to search current date vs upcoming dates
