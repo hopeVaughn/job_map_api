@@ -19,7 +19,20 @@ module.exports = (db) => {
 
   // get single company
   router.get('/:id', async (req, res) => {
-    //does something
+    try {
+      const { id } = req.params;
+      const singleCompany = `SELECT * FROM companies WHERE companies.id = $1;`;
+      const getSingleCompany = await db.query(singleCompany, [id]);
+      if (getSingleCompany.rows.length === 0) {
+        return res.status(404).send('Company Unavailable')
+      }
+      res.json(getSingleCompany.rows);
+      return getSingleCompany.rows
+    } catch (error) {
+      console.error(error.message);
+      res.status(404).send('Could not find Company')
+    }
+
   })
 
   //create company

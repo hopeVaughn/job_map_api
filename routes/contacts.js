@@ -1,5 +1,4 @@
 const express = require('express');
-const dbParams = require('../lib/db');
 const router = express.Router();
 
 
