@@ -26,7 +26,7 @@ module.exports = (db) => {
     }
   })
 
-  // get info on all companies where resume is sent
+  // get all companies resume's sent
   router.get('/resumes', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
     const allCompanies = `SELECT companies.title FROM companies
@@ -43,13 +43,33 @@ module.exports = (db) => {
       res.status(404).send('could not load company')
     }
   })
-  router.get('/resumes', async (req, res) => {
+
+  //get all companies hr_interview
+  router.get('/hr_interviews', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
     const allCompanies = `SELECT companies.title FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
-    applications.resume_sent = TRUE;`;
+    applications.hr_interview = TRUE;`;
+    try {
+      const getCompanies = await db.query(allCompanies, values);
+      res.json(getCompanies.rows);
+      return getCompanies.rows;
+    } catch (error) {
+      console.error(error.message);
+      res.status(404).send('Could not load company')
+    }
+  })
+
+  //get all companies tech_interview
+  router.get('/tech_interviews', async (req, res) => {
+    const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
+    const allCompanies = `SELECT companies.title FROM companies
+    JOIN applications ON applications.company_id = companies.id
+    WHERE companies.user_id = $1 AND
+    applications.rejected = FALSE AND
+    applications.tech_interview = TRUE;`;
     try {
       const getCompanies = await db.query(allCompanies, values);
       res.json(getCompanies.rows);
@@ -59,13 +79,15 @@ module.exports = (db) => {
       res.status(404).send('could not load company')
     }
   })
-  router.get('/resumes', async (req, res) => {
+
+  //get all companies job_offers
+  router.get('/job_offers', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
     const allCompanies = `SELECT companies.title FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
-    applications.resume_sent = TRUE;`;
+    applications.job_offer = TRUE;`;
     try {
       const getCompanies = await db.query(allCompanies, values);
       res.json(getCompanies.rows);
@@ -75,36 +97,18 @@ module.exports = (db) => {
       res.status(404).send('could not load company')
     }
   })
-  router.get('/resumes', async (req, res) => {
-    const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allCompanies = `SELECT companies.title FROM companies
-    JOIN applications ON applications.company_id = companies.id
-    WHERE companies.user_id = $1 AND
-    applications.rejected = FALSE AND
-    applications.resume_sent = TRUE;`;
+
+  //create new application
+  router.post('/', async (req, res) => {
+    const values = [req.body.resume_sent, req.body.resume_sent_date, req.body.stack, req.body.company_id];
+    const createApplication = `INSERT INTO applications(resume_sent,resume_sent_date,stack,company_id) VALUES($1, $2, $3, $4) RETURNING *;`;
     try {
-      const getCompanies = await db.query(allCompanies, values);
-      res.json(getCompanies.rows);
-      return getCompanies.rows;
+      const newApplication = await db.query(createApplication, values);
+      res.json(newApplication.rows);
+      return newApplication.rows;
     } catch (error) {
       console.error(error.message);
-      res.status(404).send('could not load company')
-    }
-  })
-  router.get('/resumes', async (req, res) => {
-    const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allCompanies = `SELECT companies.title FROM companies
-    JOIN applications ON applications.company_id = companies.id
-    WHERE companies.user_id = $1 AND
-    applications.rejected = FALSE AND
-    applications.resume_sent = TRUE;`;
-    try {
-      const getCompanies = await db.query(allCompanies, values);
-      res.json(getCompanies.rows);
-      return getCompanies.rows;
-    } catch (error) {
-      console.error(error.message);
-      res.status(404).send('could not load company')
+      res.status(500).send('Server Error')
     }
   })
 
