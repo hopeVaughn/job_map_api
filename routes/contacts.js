@@ -22,9 +22,9 @@ module.exports = (db) => {
 
   // get single contact
   router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+    const singleContact = `SELECT * FROM contacts WHERE contacts.id = $1;`
     try {
-      const { id } = req.params;
-      const singleContact = `SELECT * FROM contacts WHERE contacts.id = $1;`
       const getSingleContact = await db.query(singleContact, [id]);
       if (getSingleContact.rows.length === 0) {
         return res.status(404).send('Contact Unavailable')

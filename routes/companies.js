@@ -19,9 +19,9 @@ module.exports = (db) => {
 
   // get single company
   router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+    const singleCompany = `SELECT * FROM companies WHERE companies.id = $1;`;
     try {
-      const { id } = req.params;
-      const singleCompany = `SELECT * FROM companies WHERE companies.id = $1;`;
       const getSingleCompany = await db.query(singleCompany, [id]);
       if (getSingleCompany.rows.length === 0) {
         return res.status(404).send('Company Unavailable')
