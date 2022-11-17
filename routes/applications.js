@@ -203,7 +203,7 @@ module.exports = (db) => {
   //delete application
   router.delete('/:id', async (req, res) => {
     const { id } = req.params;
-    const removeApplication = ` DELETE FROM applications WHERE applications.id = $1;`;
+    const removeApplication = `DELETE FROM applications WHERE applications.id = $1;`;
     try {
       const deleteApplication = db.query(removeApplication, [id]);
       res.json("Application was deleted");

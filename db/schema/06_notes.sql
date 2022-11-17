@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS notes CASCADE;
+CREATE TABLE notes(
+  id SERIAL PRIMARY KEY NOT NULL,
+  company_notes VARCHAR(250),
+  company_id INT NOT NULL
+);

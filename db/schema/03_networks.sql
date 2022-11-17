@@ -2,5 +2,6 @@ DROP TABLE IF EXISTS networks CASCADE;
 CREATE TABLE networks(
   id SERIAL PRIMARY KEY NOT NULL,
   contact_id INT NOT NULL,
-  company_id INT NOT NULL
+  company_id INT NOT NULL,
+  user_id UUID NOT NULL
 );
