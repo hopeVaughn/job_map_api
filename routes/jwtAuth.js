@@ -11,7 +11,7 @@ module.exports = (db) => {
     const { email, name, password } = req.body;
     //2. check if user exists (if user exists throw error)
     try {
-      const user = await pool.query("SELECT * FROM users WHERE user_email = $1", [
+      const user = await db.query("SELECT * FROM users WHERE user_email = $1", [
         email
       ]);
 
@@ -24,7 +24,7 @@ module.exports = (db) => {
       const bcryptPassword = await bcrypt.hash(password, salt);
 
       //4. enter new user inside our database
-      let newUser = await pool.query(
+      let newUser = await db.query(
         "INSERT INTO users (user_name, user_email, user_password) VALUES ($1, $2, $3) RETURNING *",
         [name, email, bcryptPassword]
       );
@@ -45,7 +45,7 @@ module.exports = (db) => {
 
     //2. check if user does not exists (if not throw error)
     try {
-      const user = await pool.query("SELECT * FROM users WHERE user_email = $1", [
+      const user = await db.query("SELECT * FROM users WHERE user_email = $1", [
         email
       ]);
 
