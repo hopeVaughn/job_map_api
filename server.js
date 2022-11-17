@@ -4,6 +4,8 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 const express = require("express");
 const app = express();
+const cors = require("cors")
+app.use(cors());
 const morgan = require("morgan");
 // PG database client/connection setup
 const { Pool } = require("pg");
