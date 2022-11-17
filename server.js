@@ -23,12 +23,13 @@ app.use(morgan("dev"));
 const companies = require("./routes/companies")
 const contacts = require("./routes/contacts")
 const applications = require("./routes/applications")
-
+const authenticate = require("./routes/jwtAuth")
 // Mount all Resource routes
 
 app.use('/api/companies', companies(db));
 app.use('/api/contacts', contacts(db));
 app.use('/api/applications', applications(db));
+app.use('/api/authentication', authenticate(db))
 
 
 

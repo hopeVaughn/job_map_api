@@ -59,7 +59,7 @@ module.exports = (db) => {
     }
   })
 
-  //get all companies hr_interview
+  //get all hr_interview's
   router.get('/hr_interviews', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
     const allCompanies = `SELECT companies.title FROM companies
@@ -77,7 +77,7 @@ module.exports = (db) => {
     }
   })
 
-  //get all companies tech_interview
+  //get all tech_interview's
   router.get('/tech_interviews', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
     const allCompanies = `SELECT companies.title FROM companies
@@ -95,7 +95,7 @@ module.exports = (db) => {
     }
   })
 
-  //get all companies job_offers
+  //get all job_offers
   router.get('/job_offers', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
     const allCompanies = `SELECT companies.title FROM companies
