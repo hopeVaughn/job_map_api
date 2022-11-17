@@ -10,7 +10,7 @@ module.exports = (db) => {
     try {
       const contacts = await db.query(contactsQuery);
       if (contacts.rows.length === 0) {
-        return res.status(404).send('No Contacts Availible')
+        return res.status(404).send('No Contacts Available')
       }
       res.json(contacts.rows)
       return contacts.rows;

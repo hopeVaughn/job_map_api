@@ -5,5 +5,6 @@ CREATE TABLE contacts(
   network_img VARCHAR(250),
   linkedin VARCHAR(250),
   twitter VARCHAR(250),
-  github VARCHAR(250)
+  github VARCHAR(250),
+  user_id UUID NOT NULL
 );

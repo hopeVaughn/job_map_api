@@ -7,7 +7,6 @@ CREATE TABLE companies(
   human_resources_img VARCHAR(250),
   recruiter VARCHAR(250),
   recruiter_img VARCHAR(250),
-  network_id INT,
   user_id UUID NOT NULL
   );
 -- application table for ...resume.info
