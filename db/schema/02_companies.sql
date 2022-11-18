@@ -1,12 +1,11 @@
 DROP TABLE IF EXISTS companies CASCADE;
 CREATE TABLE companies(
   id SERIAL PRIMARY KEY NOT NULL,
-  title VARCHAR(250) NOT NULL,
-  category VARCHAR(250) NOT NULL,
-  human_resources VARCHAR(250),
-  human_resources_img VARCHAR(250),
-  recruiter VARCHAR(250),
-  recruiter_img VARCHAR(250),
-  user_id UUID NOT NULL
+  user_id UUID NOT NULL,
+  name VARCHAR(250) NOT NULL,
+  stack VARCHAR(250) NOT NULL,
+  front_end BOOLEAN DEFAULT FALSE,
+  back_end BOOLEAN DEFAULT FALSE,
+  full_stack BOOLEAN DEFAULT FALSE
   );
 -- application table for ...resume.info
