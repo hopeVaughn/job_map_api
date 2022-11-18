@@ -36,8 +36,9 @@ module.exports = (db) => {
   })
   //create company
   router.post('/', async (req, res) => {
-    const values = [req.body.title, req.body.category, req.body.human_resources, req.body.human_resources_img, req.body.recruiter, req.body.recruiter_img];
-    const createCompany = `INSERT INTO companies(title,category,human_resources,human_resources_img,recruiter,recruiter_img) VALUES($1, $2, $3, $4, $5, $6) RETURNING *;`;
+    const user_id = '5c2ea821-8462-4c2b-8bb7-eb1b30739837';
+    const values = [req.body.name, req.body.stack, user_id];
+    const createCompany = `INSERT INTO companies(name,stack,user_id) VALUES($1, $2, $3) RETURNING *;`;
     try {
       const newCompany = await db.query(createCompany, values);
       res.json(newCompany.rows);
@@ -55,29 +56,25 @@ module.exports = (db) => {
     let editCompany = `
     UPDATE companies
     SET `
-    if (req.body.title) {
-      values.push(req.body.title);
-      editCompany += `title = $${values.length},`
+    if (req.body.name) {
+      values.push(req.body.name);
+      editCompany += `name = $${values.length},`
     }
-    if (req.body.category) {
-      values.push(req.body.category);
-      editCompany += `category= $${values.length},`
+    if (req.body.stack) {
+      values.push(req.body.stack);
+      editCompany += `stack = $${values.length},`
     }
-    if (req.body.human_resources) {
-      values.push(req.body.human_resources);
-      editCompany += `human_resources = $${values.length},`
+    if (req.body.front_end) {
+      values.push(req.body.front_end);
+      editCompany += `front_end = $${values.length},`
     }
-    if (req.body.human_resources_img) {
-      values.push(req.body.human_resources_img);
-      editCompany += `human_resources_img = $${values.length},`
+    if (req.body.back_end) {
+      values.push(req.body.back_end);
+      editCompany += `back_end = $${values.length},`
     }
-    if (req.body.recruiter) {
-      values.push(req.body.recruiter);
-      editCompany += `recruiter = $${values.length},`
-    }
-    if (req.body.recruiter_img) {
-      values.push(req.body.recruiter_img);
-      editCompany += `recruiter_img = $${values.length},`
+    if (req.body.full_stack) {
+      values.push(req.body.full_stack);
+      editCompany += `full_stack = $${values.length},`
     }
     editCompany = editCompany.slice(0, -1);
     editCompany += `WHERE companies.id = ${id};`
