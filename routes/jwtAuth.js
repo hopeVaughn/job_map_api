@@ -11,7 +11,7 @@ module.exports = (db) => {
     const { email, name, password } = req.body;
     //2. check if user exists (if user exists throw error)
     try {
-      const user = await db.query("SELECT * FROM users WHERE user_email = $1", [
+      const user = await db.query("SELECT * FROM users WHERE email = $1", [
         email
       ]);
 
@@ -25,7 +25,7 @@ module.exports = (db) => {
 
       //4. enter new user inside our database
       let newUser = await db.query(
-        "INSERT INTO users (user_name, user_email, user_password) VALUES ($1, $2, $3) RETURNING *",
+        "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *",
         [name, email, bcryptPassword]
       );
 
@@ -45,9 +45,7 @@ module.exports = (db) => {
 
     //2. check if user does not exists (if not throw error)
     try {
-      const user = await db.query("SELECT * FROM users WHERE user_email = $1", [
-        email
-      ]);
+      const user = await db.query("SELECT * FROM users WHERE email = $1", [email]);
 
       if (user.rows.length === 0) {
         return res.status(401).json("Invalid Credential");
@@ -55,9 +53,7 @@ module.exports = (db) => {
 
       //3. check if incoming password is the same as the db password
       const validPassword = await bcrypt.compare(
-        password,
-        user.rows[0].user_password
-      );
+        password, user.rows[0].password);
 
       if (!validPassword) {
         return res.status(401).json("Invalid Credential");
@@ -80,6 +76,7 @@ module.exports = (db) => {
       res.status(500).send("Server error");
     }
   });
+
 
   return router
 }

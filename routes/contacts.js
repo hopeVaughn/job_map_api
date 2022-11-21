@@ -41,7 +41,7 @@ module.exports = (db) => {
   router.post('/', async (req, res) => {
     const user_id = '5c2ea821-8462-4c2b-8bb7-eb1b30739837'
     const values = [req.body.name, req.body.image, req.body.linkedin, req.body.twitter, req.body.github, user_id];
-    const createContact = `INSERT INTO contacts(name,network_img,linkedin,twitter,github,user_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *;`;
+    const createContact = `INSERT INTO contacts(name,image,linkedin,twitter,github,user_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *;`;
     try {
       const newContact = await db.query(createContact, values);
       res.json(newContact.rows);

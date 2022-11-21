@@ -37,8 +37,8 @@ module.exports = (db) => {
   //create company
   router.post('/', async (req, res) => {
     const user_id = '5c2ea821-8462-4c2b-8bb7-eb1b30739837';
-    const values = [req.body.name, req.body.stack, user_id];
-    const createCompany = `INSERT INTO companies(name,stack,user_id) VALUES($1, $2, $3) RETURNING *;`;
+    const values = [req.body.name, user_id];
+    const createCompany = `INSERT INTO companies(name,user_id) VALUES($1, $2) RETURNING *;`;
     try {
       const newCompany = await db.query(createCompany, values);
       res.json(newCompany.rows);
@@ -59,22 +59,6 @@ module.exports = (db) => {
     if (req.body.name) {
       values.push(req.body.name);
       editCompany += `name = $${values.length},`
-    }
-    if (req.body.stack) {
-      values.push(req.body.stack);
-      editCompany += `stack = $${values.length},`
-    }
-    if (req.body.front_end) {
-      values.push(req.body.front_end);
-      editCompany += `front_end = $${values.length},`
-    }
-    if (req.body.back_end) {
-      values.push(req.body.back_end);
-      editCompany += `back_end = $${values.length},`
-    }
-    if (req.body.full_stack) {
-      values.push(req.body.full_stack);
-      editCompany += `full_stack = $${values.length},`
     }
     editCompany = editCompany.slice(0, -1);
     editCompany += `WHERE companies.id = ${id};`
