@@ -44,7 +44,7 @@ module.exports = (db) => {
   // get all sent resume's
   router.get('/resumes', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allResumes = `SELECT companies.title FROM companies
+    const allResumes = `SELECT companies.name FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
@@ -62,7 +62,7 @@ module.exports = (db) => {
   //get all hr_interview's
   router.get('/hr_interviews', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allCompanies = `SELECT companies.title FROM companies
+    const allCompanies = `SELECT companies.name FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
@@ -80,7 +80,7 @@ module.exports = (db) => {
   //get all tech_interview's
   router.get('/tech_interviews', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allCompanies = `SELECT companies.title FROM companies
+    const allCompanies = `SELECT companies.name FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
@@ -98,7 +98,7 @@ module.exports = (db) => {
   //get all job_offers
   router.get('/job_offers', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allCompanies = `SELECT companies.title FROM companies
+    const allCompanies = `SELECT companies.name FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
@@ -137,7 +137,7 @@ module.exports = (db) => {
       return getSingleApplication.rows;
     } catch (error) {
       console.error(error.message);
-      res.status(404).send('Bobba Fett');
+      res.status(404).send('Single application not found');
     }
   })
 
@@ -164,25 +164,13 @@ module.exports = (db) => {
       values.push(req.body.hr_interview);
       editApplication += `hr_interview = $${values.length},`
     }
-    if (req.body.hr_interview_date) {
-      values.push(req.body.hr_interview_date);
-      editApplication += `hr_interview_date = $${values.length},`
-    }
     if (req.body.tech_interview) {
       values.push(req.body.tech_interview);
       editApplication += `tech_interview = $${values.length},`
     }
-    if (req.body.tech_interview_date) {
-      values.push(req.body.tech_interview_date);
-      editApplication += `tech_interview_date = $${values.length},`
-    }
     if (req.body.job_offer) {
       values.push(req.body.job_offer);
       editApplication += `job_offer = $${values.length},`
-    }
-    if (req.body.job_offer_date) {
-      values.push(req.body.job_offer_date);
-      editApplication += `job_offer_date = $${values.length},`
     }
     if (req.body.stack) {
       values.push(req.body.stack);

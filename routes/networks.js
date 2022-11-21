@@ -8,15 +8,13 @@ module.exports = (db) => {
   //get all network for company
   router.get('/', async (req, res) => {
     const companyID = 1;
-    const values = [companyID, '5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allNetwork = `SELECT contacts.name, contacts.network_img FROM contacts
+    const values = [companyID];
+    const allNetwork = `SELECT contacts.name, contacts.image FROM contacts
     JOIN networks ON networks.contact_id = contacts.id
-    WHERE networks.company_id = $1 AND
-    networks.user_id = $2;`;
+    WHERE networks.company_id = $1`;
     // const getAllContacts = `SELECT contacts.name, contacts.network_img FROM contacts WHERE id = `
     try {
       const getAllNetworks = await db.query(allNetwork, values)
-      console.log(getAllNetworks.rows);
       res.json(getAllNetworks.rows);
       return getAllNetworks.rows;
     } catch (error) {
@@ -27,9 +25,8 @@ module.exports = (db) => {
 
   //create new network
   router.post('/', async (req, res) => {
-    const user_id = '5c2ea821-8462-4c2b-8bb7-eb1b30739837'
-    const values = [req.body.contact_id, req.body.company_id, user_id];
-    const createNetwork = `INSERT INTO networks(contact_id,company_id,user_id) VALUES($1,$2,$3) RETURNING *;`;
+    const values = [req.body.contact_id, req.body.company_id];
+    const createNetwork = `INSERT INTO networks(contact_id,company_id) VALUES($1,$2) RETURNING *;`;
     try {
       const newNetwork = await db.query(createNetwork, values);
       res.json(newNetwork.rows);
