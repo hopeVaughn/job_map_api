@@ -6,7 +6,7 @@ module.exports = (db) => {
 
   // get all companies
   router.get('/', async (req, res) => {
-    const getCompanies = `SELECT * FROM companies;`
+    const getCompanies = `SELECT * FROM companies ORDER BY companies.name ASC;`
     try {
       const companies = await db.query(getCompanies);
       res.json(companies.rows)

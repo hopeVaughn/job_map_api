@@ -11,7 +11,8 @@ module.exports = (db) => {
     const values = [companyID];
     const allNetwork = `SELECT contacts.name, contacts.image FROM contacts
     JOIN networks ON networks.contact_id = contacts.id
-    WHERE networks.company_id = $1`;
+    WHERE networks.company_id = $1
+    ORDER BY contacts.name ASC`;
     // const getAllContacts = `SELECT contacts.name, contacts.network_img FROM contacts WHERE id = `
     try {
       const getAllNetworks = await db.query(allNetwork, values)

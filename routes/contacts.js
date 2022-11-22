@@ -6,7 +6,7 @@ module.exports = (db) => {
 
   // get all contacts
   router.get('/', async (req, res) => {
-    const contactsQuery = `SELECT * FROM contacts;`
+    const contactsQuery = `SELECT * FROM contacts ORDER BY contacts.name ASC;`
     try {
       const contacts = await db.query(contactsQuery);
       if (contacts.rows.length === 0) {
