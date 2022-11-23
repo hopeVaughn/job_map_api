@@ -1,0 +1,1 @@
+-- INSERT INTO users(name,email,password) VALUES('testing', 'test@gmail.com', 'test123');
