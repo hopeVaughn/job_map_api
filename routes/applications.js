@@ -98,7 +98,7 @@ module.exports = (db) => {
   //get all job_offers
   router.get('/job_offers', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allCompanies = `SELECT applications.id,applications.stack, applications.company_id, companies.name FROM companies
+    const allCompanies = `SELECT applications.id,applications.stack,companies.name, companies.id FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
@@ -144,6 +144,21 @@ module.exports = (db) => {
   router.get('/:id', async (req, res) => {
     const { id } = req.params;
     const singleApplication = `SELECT * FROM applications WHERE applications.id = $1;`;
+    try {
+      const getSingleApplication = await db.query(singleApplication, [id]);
+      res.json(getSingleApplication.rows);
+      return getSingleApplication.rows;
+    } catch (error) {
+      console.error(error.message);
+      res.status(404).send('Single application not found');
+    }
+  })
+  // //get custom application by id
+  router.get('/custom/:id', async (req, res) => {
+    const { id } = req.params;
+    const singleApplication = `SELECT applications.stack,companies.name, companies.id FROM companies
+    JOIN applications ON applications.company_id = companies.id
+    WHERE applications.id = $1`;
     try {
       const getSingleApplication = await db.query(singleApplication, [id]);
       res.json(getSingleApplication.rows);
