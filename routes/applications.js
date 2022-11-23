@@ -44,7 +44,7 @@ module.exports = (db) => {
   // get all sent resume's
   router.get('/resumes', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allResumes = `SELECT companies.name, companies.id FROM companies
+    const allResumes = `SELECT applications.id,applications.stack,companies.name, companies.id FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
@@ -62,7 +62,7 @@ module.exports = (db) => {
   //get all hr_interview's
   router.get('/hr_interviews', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allCompanies = `SELECT companies.name, companies.id FROM companies
+    const allCompanies = `SELECT applications.id,applications.stack,companies.name, companies.id FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
@@ -80,7 +80,7 @@ module.exports = (db) => {
   //get all tech_interview's
   router.get('/tech_interviews', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allCompanies = `SELECT companies.name, companies.id FROM companies
+    const allCompanies = `SELECT applications.id,applications.stack,companies.name, companies.id FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
@@ -98,7 +98,7 @@ module.exports = (db) => {
   //get all job_offers
   router.get('/job_offers', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allCompanies = `SELECT companies.name, companies.id FROM companies
+    const allCompanies = `SELECT applications.id,applications.stack,companies.name, companies.id FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
@@ -112,6 +112,19 @@ module.exports = (db) => {
       res.status(404).send('could not load company')
     }
   })
+
+  //get all company specific application data
+
+  // router.get('/allInfo', async (req, res) => {
+  //   const { id } = req.params;
+  //   const allInfo = `SELECT applications.stack FROM applications`
+  //   try {
+
+  //   } catch (error) {
+  //     console.error(error.message);
+  //     res.status(404).send('could not load application');
+  //   }
+  // })
 
   //create new application
   router.post('/', async (req, res) => {
