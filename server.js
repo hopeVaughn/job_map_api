@@ -27,12 +27,14 @@ const contacts = require("./routes/contacts")
 const applications = require("./routes/applications")
 const authenticate = require("./routes/jwtAuth")
 const networks = require('./routes/networks')
+const notes = require('./routes/notes')
 // Mount all Resource routes
 
 app.use('/api/companies', companies(db));
 app.use('/api/contacts', contacts(db));
 app.use('/api/applications', applications(db));
 app.use('/api/networks', networks(db))
+app.use('/api/notes', notes(db))
 app.use('/api/authentication', authenticate(db))
 
 

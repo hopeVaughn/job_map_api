@@ -84,5 +84,51 @@ module.exports = (db) => {
       res.status(404).send('Company not found')
     }
   })
+
+  //get all notes
+  router.get('/notes', async (req, res) => {
+    //do something
+    // const values = ;
+    const allNotes = `SELECT * FROM notes
+    JOIN `
+    try {
+
+    } catch (error) {
+
+    }
+  })
+
+  // create new note
+  router.post('/notes', async (req, res) => {
+    const { id } = req.params;
+    const values = [req.body.name, id];
+    const createNote = `INSERT INTO applications(note,company_id)`
+    try {
+
+    } catch (error) {
+
+    }
+  })
+
+  // edit single note
+  router.put('/', async (req, res) => {
+    //do something
+    try {
+
+    } catch (error) {
+
+    }
+  })
+
+  // delete single note
+  router.delete('/', async (req, res) => {
+    //do something
+    try {
+
+    } catch (error) {
+
+    }
+  })
+
   return router;
 }
