@@ -113,19 +113,6 @@ module.exports = (db) => {
     }
   })
 
-  //get all company specific application data
-
-  // router.get('/allInfo', async (req, res) => {
-  //   const { id } = req.params;
-  //   const allInfo = `SELECT applications.stack FROM applications`
-  //   try {
-
-  //   } catch (error) {
-  //     console.error(error.message);
-  //     res.status(404).send('could not load application');
-  //   }
-  // })
-
   //create new application
   router.post('/', async (req, res) => {
     const values = [req.body.resume_sent, req.body.resume_sent_date, req.body.stack, req.body.company_id];
@@ -228,5 +215,70 @@ module.exports = (db) => {
       res.status(404).send('Company not found')
     }
   })
+
+  // --------------------------- NOTES -------------------------------------
+  //get all notes
+  router.get('/notes/all', async (req, res) => {
+    //do something
+    const { id } = req.params;
+    const allNotes = `SELECT * FROM notes
+    where application_id = ${id} ORDER BY application_id DESC;
+    `
+    try {
+      const getAllNotes = db.query(allNotes)
+      res.json(getAllNotes.rows)
+    } catch (error) {
+      console.error(error.message);
+      res.status(404).send('could not find notes')
+    }
+  })
+
+  // create new note
+  router.post('/notes', async (req, res) => {
+    const { id } = req.params;
+    const values = [id, req.body.note];
+    const createNote = `INSERT INTO notes(application_id,note) VALUES($1,$2) RETURNING*;`
+    try {
+      const newNote = await db.query(createNote, values);
+      res.json(newNote.rows);
+      return newNote;
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send('Server Error')
+    }
+  })
+
+  // edit single note
+  router.put('/notes/:id', async (req, res) => {
+    const { id } = req.params;
+    const values = [req.body.note];
+    let editNote = `
+    UPDATE notes
+    SET note = $1
+    WHERE application_id = ${id};
+    `
+    try {
+      const updateNote = await db.query(editNote, values)
+      res.json(updateNote.rows)
+      return updateNote.rows
+    } catch (error) {
+      console.error(error.message)
+      res.status(404).send('could not find note')
+    }
+  })
+
+  // delete single note
+  router.delete('/notes/:id', async (req, res) => {
+    const { id } = req.params;
+    const removeNote = `DELETE FROM notes WHERE `
+    try {
+
+    } catch (error) {
+
+    }
+  })
   return router;
 }
+
+
+
