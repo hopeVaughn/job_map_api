@@ -65,7 +65,7 @@ module.exports = (db) => {
     }
     if (req.body.image) {
       values.push(req.body.image);
-      editContact += `network_img = $${values.length},`
+      editContact += `image = $${values.length},`
     }
     if (req.body.linkedin) {
       values.push(req.body.linkedin);
@@ -80,7 +80,7 @@ module.exports = (db) => {
       editContact += `github = $${values.length},`
     }
     editContact = editContact.slice(0, -1);
-    editContact += `WHERE contacts.id = ${id};`
+    editContact += ` WHERE contacts.id = ${id};`
     try {
       const updateContact = await db.query(editContact, values);
       res.json("Contact was updated");
