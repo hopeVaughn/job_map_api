@@ -220,12 +220,12 @@ module.exports = (db) => {
   //get all notes
   router.get('/notes/all', async (req, res) => {
     //do something
-    const { id } = req.params;
-    const allNotes = `SELECT * FROM notes
-    where application_id = ${id} ORDER BY application_id DESC;
+    // const id = 1;
+    const allNotes = `SELECT * FROM notes WHERE notes.application_id = 1 ORDER BY notes.application_id DESC;
     `
     try {
-      const getAllNotes = db.query(allNotes)
+      const getAllNotes = await db.query(allNotes)
+      console.log(getAllNotes.rows);
       res.json(getAllNotes.rows)
     } catch (error) {
       console.error(error.message);
@@ -251,6 +251,7 @@ module.exports = (db) => {
   // edit single note
   router.put('/notes/:id', async (req, res) => {
     const { id } = req.params;
+    const { noteid, noteTex } = req.body
     const values = [req.body.note];
     let editNote = `
     UPDATE notes
