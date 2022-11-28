@@ -7,11 +7,29 @@ module.exports = (db) => {
 
   //get all network for company
   router.get('/', async (req, res) => {
-    const companyID = 1;
+    const companyID = 5;
     const values = [companyID];
-    const allNetwork = `SELECT contacts.name, contacts.image FROM contacts
+    const allNetwork = `SELECT contacts.name, contacts.image, contacts.id FROM contacts
     JOIN networks ON networks.contact_id = contacts.id
     WHERE networks.company_id = $1
+    ORDER BY contacts.name ASC`;
+    // const getAllContacts = `SELECT contacts.name, contacts.network_img FROM contacts WHERE id = `
+    try {
+      const getAllNetworks = await db.query(allNetwork, values)
+      res.json(getAllNetworks.rows);
+      return getAllNetworks.rows;
+    } catch (error) {
+      console.error(error.message);
+      res.status(404).send('Could not find Network')
+    }
+  });
+
+  //get all network that is NOT from this company
+  router.get('/withoutnetwork', async (req, res) => {
+    const companyID = 5;
+    const values = [companyID];
+    const allNetwork = `SELECT contacts.name, contacts.image, contacts.id FROM contacts
+    WHERE id NOT IN (SELECT contact_id FROM networks WHERE networks.company_id = $1)
     ORDER BY contacts.name ASC`;
     // const getAllContacts = `SELECT contacts.name, contacts.network_img FROM contacts WHERE id = `
     try {
