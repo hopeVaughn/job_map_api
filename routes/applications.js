@@ -115,8 +115,23 @@ module.exports = (db) => {
 
   //create new application
   router.post('/', async (req, res) => {
-    const values = [req.body.resume_sent, req.body.resume_sent_date, req.body.stack, req.body.company_id];
-    const createApplication = `INSERT INTO applications(resume_sent,resume_sent_date,stack,company_id) VALUES($1, $2, $3, $4) RETURNING *;`;
+    const values = [
+      req.body.resume_sent,
+      req.body.resume_sent_date,
+      req.body.stack,
+      req.body.front_end,
+      req.body.back_end,
+      req.body.full_stack,
+      req.body.company_id
+    ];
+    const createApplication = `INSERT INTO applications(
+      resume_sent,
+      resume_sent_date,
+      stack,
+      front_end,
+      back_end,
+      full_stack,
+      company_id) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *;`;
     try {
       const newApplication = await db.query(createApplication, values);
       res.json(newApplication.rows);
