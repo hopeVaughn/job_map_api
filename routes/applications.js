@@ -98,7 +98,7 @@ module.exports = (db) => {
   //get all job_offers
   router.get('/job_offers', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allCompanies = `SELECT applications.id,applications.stack,companies.name, companies.id FROM companies
+    const allCompanies = `SELECT applications.id,applications.stack, applications.company_id, companies.name FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
@@ -219,7 +219,7 @@ module.exports = (db) => {
   // --------------------------- NOTES -------------------------------------
 
   // !!! This route handler uses hardcoded application id. Also, I don't think that we need /all here
-  // I implemented the functionality we required in the route handler that goes next. 
+  // I implemented the functionality we required in the route handler that goes next.
 
   //get all notes
   // router.get('/notes/all', async (req, res) => {
