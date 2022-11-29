@@ -295,12 +295,12 @@ module.exports = (db) => {
   // edit single note
   router.put('/notes/:id', async (req, res) => {
     const { id } = req.params;
-    const { noteid, noteTex } = req.body
-    const values = [req.body.note];
+    
+    const values = [req.body.note, id];
     let editNote = `
     UPDATE notes
     SET note = $1
-    WHERE application_id = ${id};
+    WHERE id = $2; 
     `
     try {
       const updateNote = await db.query(editNote, values)
@@ -315,11 +315,15 @@ module.exports = (db) => {
   // delete single note
   router.delete('/notes/:id', async (req, res) => {
     const { id } = req.params;
-    const removeNote = `DELETE FROM notes WHERE `
+    const values = [id];
+    const removeNote = `DELETE FROM notes WHERE id = $1;`
     try {
-
+      const updateNote = await db.query(removeNote, values)
+      res.json(updateNote.rows)
+      return updateNote.rows
     } catch (error) {
-
+      console.error(error.message)
+      res.status(404).send('could not find note')
     }
   })
   return router;
