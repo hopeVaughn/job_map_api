@@ -182,7 +182,7 @@ module.exports = (db) => {
       values.push(req.body.rejected);
       editApplication += `rejected = $${values.length},`
     }
-    if (req.body.resume_sent) {
+    if (typeof req.body.resume_sent !== 'undefined') {
       values.push(req.body.resume_sent);
       editApplication += `resume_sent= $${values.length},`
     }
@@ -190,15 +190,15 @@ module.exports = (db) => {
       values.push(req.body.resume_sent_date);
       editApplication += `resume_sent_date= $${values.length},`
     }
-    if (req.body.hr_interview) {
+    if (typeof req.body.hr_interview !== 'undefined') {
       values.push(req.body.hr_interview);
       editApplication += `hr_interview = $${values.length},`
     }
-    if (req.body.tech_interview) {
+    if (typeof req.body.tech_interview !== 'undefined') {
       values.push(req.body.tech_interview);
       editApplication += `tech_interview = $${values.length},`
     }
-    if (req.body.job_offer) {
+    if (typeof req.body.job_offer !== 'undefined') {
       values.push(req.body.job_offer);
       editApplication += `job_offer = $${values.length},`
     }
@@ -295,12 +295,12 @@ module.exports = (db) => {
   // edit single note
   router.put('/notes/:id', async (req, res) => {
     const { id } = req.params;
-    
+
     const values = [req.body.note, id];
     let editNote = `
     UPDATE notes
     SET note = $1
-    WHERE id = $2; 
+    WHERE id = $2;
     `
     try {
       const updateNote = await db.query(editNote, values)
