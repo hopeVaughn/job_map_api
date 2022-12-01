@@ -29,7 +29,8 @@ module.exports = (db) => {
   //get all applications
 
   router.get('/all', async (req, res) => {
-    const allApplications = `SELECT * FROM applications;`;
+    const allApplications = `SELECT applications.*, name FROM applications
+    JOIN companies ON applications.company_id = companies.id;`;
     try {
       const getAllApplications = await db.query(allApplications)
       res.json(getAllApplications.rows);
