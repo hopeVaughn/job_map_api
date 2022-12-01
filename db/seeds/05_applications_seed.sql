@@ -1,12 +1,22 @@
-INSERT INTO applications(resume_sent,hr_interview,tech_interview,job_offer,company_id) VALUES (TRUE, FALSE, FALSE, FALSE,4);
-INSERT INTO applications(resume_sent,hr_interview,tech_interview,job_offer,company_id) VALUES (TRUE, FALSE, FALSE, FALSE,3);
-INSERT INTO applications(resume_sent,hr_interview,tech_interview,job_offer,company_id) VALUES (TRUE, FALSE, FALSE, FALSE,2);
-INSERT INTO applications(resume_sent,hr_interview,tech_interview,job_offer,company_id) VALUES (TRUE, FALSE, FALSE, FALSE,1);
-INSERT INTO applications(resume_sent,hr_interview,tech_interview,job_offer,company_id) VALUES (FALSE, TRUE, FALSE, FALSE,3);
-INSERT INTO applications(resume_sent,hr_interview,tech_interview,job_offer,company_id) VALUES (FALSE, TRUE, FALSE, FALSE,2);
-INSERT INTO applications(resume_sent,hr_interview,tech_interview,job_offer,company_id) VALUES (FALSE, TRUE, FALSE, FALSE,1);
-INSERT INTO applications(resume_sent,hr_interview,tech_interview,job_offer,company_id) VALUES (FALSE, FALSE, TRUE, FALSE,1);
-INSERT INTO applications(resume_sent,hr_interview,tech_interview,job_offer,company_id) VALUES (FALSE, FALSE, TRUE, FALSE,2);
-INSERT INTO applications(resume_sent,hr_interview,tech_interview,job_offer,company_id) VALUES (FALSE, FALSE, FALSE, TRUE,5);
-INSERT INTO applications(resume_sent,hr_interview,tech_interview,job_offer,company_id) VALUES (TRUE, FALSE, FALSE, FALSE,2);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (4,'MERN',TRUE, '05-31-2022', FALSE, FALSE, FALSE,FALSE,FALSE,TRUE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (3,'ANGULAR',TRUE, '05-31-2022', FALSE, FALSE, FALSE,TRUE,FALSE,FALSE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (2,'ANGULAR',TRUE, '05-31-2022', FALSE, FALSE, FALSE,TRUE,FALSE,FALSE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (4,'REACT',TRUE, '05-31-2022', FALSE, FALSE, FALSE,TRUE,FALSE,FALSE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (1,'RNR',TRUE, '05-31-2022', FALSE, FALSE, FALSE,TRUE,FALSE,FALSE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (5,'RUBY',TRUE, '05-31-2022', FALSE, FALSE, FALSE,FALSE,TRUE,FALSE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (6,'REACT',TRUE, '05-31-2022', FALSE, FALSE, FALSE,TRUE,FALSE,FALSE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (6,'MERN',TRUE, '05-31-2022', FALSE, FALSE, FALSE,FALSE,FALSE,TRUE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (5,'MERN',TRUE, '05-31-2022', FALSE, FALSE, FALSE,FALSE,FALSE,TRUE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (3,'MERN',TRUE, '05-31-2022', FALSE, FALSE, FALSE,FALSE,FALSE,TRUE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (4,'MERN',FALSE, '05-31-2022', TRUE, FALSE, FALSE,FALSE,FALSE,TRUE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (1,'MERN',FALSE, '05-31-2022', TRUE, FALSE, FALSE,FALSE,FALSE,TRUE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (2,'MERN',FALSE, '05-31-2022', TRUE, FALSE, FALSE,FALSE,FALSE,TRUE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (5,'MERN',FALSE, '05-31-2022', TRUE, FALSE, FALSE,FALSE,FALSE,TRUE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (6,'MERN',FALSE, '05-31-2022', TRUE, FALSE, FALSE,FALSE,FALSE,TRUE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (1,'MERN',FALSE, '05-31-2022', FALSE, TRUE, FALSE,FALSE,FALSE,TRUE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (4,'MERN',FALSE, '05-31-2022', FALSE, TRUE, FALSE,FALSE,FALSE,TRUE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (5,'MERN',FALSE, '05-31-2022', FALSE, TRUE, FALSE,FALSE,FALSE,TRUE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (3,'MERN',FALSE, '05-31-2022', FALSE, FALSE, TRUE,FALSE,FALSE,TRUE,FALSE);
+INSERT INTO applications(company_id,stack,resume_sent,resume_sent_date,hr_interview,tech_interview,job_offer,front_end,back_end,full_stack,rejected) VALUES (1,'MERN',FALSE, '05-31-2022', FALSE, FALSE, TRUE,FALSE,FALSE,TRUE,FALSE);
+
 

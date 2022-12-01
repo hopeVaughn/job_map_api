@@ -44,7 +44,7 @@ module.exports = (db) => {
   // get all sent resume's
   router.get('/resumes', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allResumes = `SELECT applications.id,applications.stack, applications.company_id, companies.name FROM companies
+    const allResumes = `SELECT applications.id,applications.stack, applications.resume_sent_date,applications.company_id, companies.name FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
@@ -158,7 +158,7 @@ module.exports = (db) => {
   // //get custom application by id
   router.get('/custom/:id', async (req, res) => {
     const { id } = req.params;
-    const singleApplication = `SELECT applications.stack,companies.name, companies.id FROM companies
+    const singleApplication = `SELECT applications.stack,applications.front_end, applications.back_end, applications.full_stack,companies.name, companies.id FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE applications.id = $1`;
     try {

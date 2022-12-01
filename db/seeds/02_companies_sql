@@ -4,3 +4,4 @@ INSERT INTO companies(name, user_id) VALUES ('Google','5c2ea821-8462-4c2b-8bb7-e
 INSERT INTO companies(name,user_id) VALUES ('Tesla','5c2ea821-8462-4c2b-8bb7-eb1b30739837');
 INSERT INTO companies(name, user_id) VALUES ('Twitter','5c2ea821-8462-4c2b-8bb7-eb1b30739837');
 INSERT INTO companies(name, user_id) VALUES ('LHL', '5c2ea821-8462-4c2b-8bb7-eb1b30739837');
+INSERT INTO companies(name, user_id) VALUES ('FACEBOOK', '5c2ea821-8462-4c2b-8bb7-eb1b30739837');
