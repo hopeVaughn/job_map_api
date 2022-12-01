@@ -62,11 +62,11 @@ module.exports = (db) => {
   //get all hr_interview's
   router.get('/hr_interviews', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allCompanies = `SELECT applications.id,applications.stack, applications.company_id, companies.name FROM companies
+    const allCompanies = `SELECT applications.id,applications.stack, applications.resume_sent_date,applications.company_id, companies.name FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
-    applications.hr_interview = TRUE;`;
+    applications.resume_sent = TRUE;`;
     try {
       const getCompanies = await db.query(allCompanies, values);
       res.json(getCompanies.rows);
@@ -80,11 +80,11 @@ module.exports = (db) => {
   //get all tech_interview's
   router.get('/tech_interviews', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allCompanies = `SELECT applications.id,applications.stack, applications.company_id, companies.name FROM companies
+    const allCompanies = `SELECT applications.id,applications.stack, applications.resume_sent_date,applications.company_id, companies.name FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
-    applications.tech_interview = TRUE;`;
+    applications.resume_sent = TRUE;`;
     try {
       const getCompanies = await db.query(allCompanies, values);
       res.json(getCompanies.rows);
@@ -98,11 +98,11 @@ module.exports = (db) => {
   //get all job_offers
   router.get('/job_offers', async (req, res) => {
     const values = ['5c2ea821-8462-4c2b-8bb7-eb1b30739837'];
-    const allCompanies = `SELECT applications.id,applications.stack, applications.company_id, companies.name FROM companies
+    const allCompanies = `SELECT applications.id,applications.stack, applications.resume_sent_date,applications.company_id, companies.name FROM companies
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
-    applications.job_offer = TRUE;`;
+    applications.resume_sent = TRUE;`;
     try {
       const getCompanies = await db.query(allCompanies, values);
       res.json(getCompanies.rows);
