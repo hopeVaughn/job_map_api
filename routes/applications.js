@@ -67,7 +67,7 @@ module.exports = (db) => {
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
-    applications.resume_sent = TRUE;`;
+    applications.hr_interview = TRUE;`;
     try {
       const getCompanies = await db.query(allCompanies, values);
       res.json(getCompanies.rows);
@@ -85,7 +85,7 @@ module.exports = (db) => {
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
-    applications.resume_sent = TRUE;`;
+    applications.tech_interview = TRUE;`;
     try {
       const getCompanies = await db.query(allCompanies, values);
       res.json(getCompanies.rows);
@@ -103,7 +103,7 @@ module.exports = (db) => {
     JOIN applications ON applications.company_id = companies.id
     WHERE companies.user_id = $1 AND
     applications.rejected = FALSE AND
-    applications.resume_sent = TRUE;`;
+    applications.job_offer = TRUE;`;
     try {
       const getCompanies = await db.query(allCompanies, values);
       res.json(getCompanies.rows);
