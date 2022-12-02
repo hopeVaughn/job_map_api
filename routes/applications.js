@@ -30,7 +30,8 @@ module.exports = (db) => {
 
   router.get('/all', async (req, res) => {
     const allApplications = `SELECT applications.*, name FROM applications
-    JOIN companies ON applications.company_id = companies.id;`;
+    JOIN companies ON applications.company_id = companies.id
+    ORDER BY name, resume_sent_date ASC;`;
     try {
       const getAllApplications = await db.query(allApplications)
       res.json(getAllApplications.rows);
