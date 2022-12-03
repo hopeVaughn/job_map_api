@@ -1,7 +1,7 @@
 -- date format is yyyy-mm-dd
 INSERT INTO companies(name, user_id) VALUES ('Amazon','5c2ea821-8462-4c2b-8bb7-eb1b30739837');
 INSERT INTO companies(name, user_id) VALUES ('Google','5c2ea821-8462-4c2b-8bb7-eb1b30739837');
-INSERT INTO companies(name,user_id) VALUES ('Tesla','5c2ea821-8462-4c2b-8bb7-eb1b30739837');
+INSERT INTO companies(name,user_id) VALUES ('Netflix','5c2ea821-8462-4c2b-8bb7-eb1b30739837');
 INSERT INTO companies(name, user_id) VALUES ('Twitter','5c2ea821-8462-4c2b-8bb7-eb1b30739837');
 INSERT INTO companies(name, user_id) VALUES ('LHL', '5c2ea821-8462-4c2b-8bb7-eb1b30739837');
-INSERT INTO companies(name, user_id) VALUES ('FACEBOOK', '5c2ea821-8462-4c2b-8bb7-eb1b30739837');
+INSERT INTO companies(name, user_id) VALUES ('Facebook', '5c2ea821-8462-4c2b-8bb7-eb1b30739837');
