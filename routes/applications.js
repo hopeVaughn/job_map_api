@@ -238,27 +238,11 @@ module.exports = (db) => {
   // !!! This route handler uses hardcoded application id. Also, I don't think that we need /all here
   // I implemented the functionality we required in the route handler that goes next.
 
-  //get all notes
-  // router.get('/notes/all', async (req, res) => {
-  //   //do something
-  //   // const id = 1;
-  //   const allNotes = `SELECT * FROM notes WHERE notes.application_id = 1 ORDER BY notes.application_id DESC;
-  //   `
-  //   try {
-  //     const getAllNotes = await db.query(allNotes)
-  //     console.log(getAllNotes.rows);
-  //     res.json(getAllNotes.rows)
-  //   } catch (error) {
-  //     console.error(error.message);
-  //     res.status(404).send('could not find notes')
-  //   }
-  // })
 
   //----------------Nadia--------------------------------------
   // Fetch notes for a specific application by id
   router.get('/:id/notes', async (req, res) => {
     //do something
-    // const id = 1;
     const values = [req.params.id];
     const allNotes = `
     SELECT * FROM notes WHERE notes.application_id = $1

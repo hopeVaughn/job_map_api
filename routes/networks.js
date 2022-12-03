@@ -10,7 +10,7 @@ module.exports = (db) => {
 
     const { id } = req.params;
 
-    const allNetwork = `SELECT contacts.name, contacts.image, contacts.id, networks.id as networkid FROM contacts
+    const allNetwork = `SELECT contacts.name, contacts.image, contacts.id, networks.id as networkId FROM contacts
     JOIN networks ON networks.contact_id = contacts.id
     WHERE networks.company_id = $1
     ORDER BY contacts.name ASC`;
@@ -26,14 +26,14 @@ module.exports = (db) => {
   });
 
   //get all network that is NOT from this company
-  router.get('/withoutnetwork/:id', async (req, res) => {
+  router.get('/withoutNetwork/:id', async (req, res) => {
     const { id } = req.params;
     const allNetwork = `SELECT contacts.name, contacts.image, contacts.id FROM contacts
     WHERE id NOT IN (SELECT contact_id FROM networks WHERE networks.company_id = $1)
     ORDER BY contacts.name ASC`;
     // const getAllContacts = `SELECT contacts.name, contacts.network_img FROM contacts WHERE id = `
     try {
-      const getAllNetworks = await db.query(allNetwork,  [id])
+      const getAllNetworks = await db.query(allNetwork, [id])
       res.json(getAllNetworks.rows);
       return getAllNetworks.rows;
     } catch (error) {
